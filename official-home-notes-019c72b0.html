@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 稳定入口与页面说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fdead6 0%, #f7d9b0 40%, #f5cfa1 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .page-wrap {
+      max-width: 980px;
+      width: 100%;
+    }
+
+    /* 顶部导航 */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 250, 240, 0.7);
+      backdrop-filter: blur(6px);
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 12px rgba(180, 100, 40, 0.08);
+    }
+
+    .top-nav .brand {
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: #6a3f1f;
+      letter-spacing: 1px;
+    }
+
+    .top-nav .brand span {
+      background: #d6995a;
+      color: #fff6e8;
+      padding: 0.1rem 0.55rem;
+      border-radius: 30px;
+      margin-left: 6px;
+      font-size: 0.75rem;
+      vertical-align: middle;
+    }
+
+    .top-nav .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .top-nav .nav-links a {
+      text-decoration: none;
+      color: #4d2f15;
+      padding: 0.25rem 0.1rem;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .top-nav .nav-links a:hover {
+      border-bottom-color: #b57c4a;
+      color: #2b1a0b;
+    }
+
+    /* 卡片通用 */
+    .card {
+      background: #fffcf7;
+      border-radius: 32px;
+      padding: 2.2rem 2.5rem;
+      box-shadow: 0 12px 28px rgba(130, 70, 30, 0.06);
+      margin-bottom: 2.5rem;
+      transition: transform 0.15s ease, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: 0 16px 32px rgba(140, 60, 20, 0.08);
+    }
+
+    /* hero */
+    .hero {
+      text-align: center;
+      padding: 3rem 2.5rem 2.8rem;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 600;
+      color: #3d2410;
+      letter-spacing: 2px;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #6a4a2c;
+      line-height: 1.7;
+      max-width: 680px;
+      margin: 0 auto 1.8rem;
+    }
+
+    .hero .hero-link {
+      display: inline-block;
+      background: #d6995a;
+      color: #fef6eb;
+      padding: 0.7rem 2.2rem;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 10px rgba(190, 120, 50, 0.2);
+      letter-spacing: 0.5px;
+    }
+
+    .hero .hero-link:hover {
+      background: #c18646;
+      transform: scale(1.02);
+    }
+
+    /* 场景卡片三列 */
+    .scenes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .scene-card {
+      background: #fffcf7;
+      border-radius: 28px;
+      padding: 1.8rem 1.4rem;
+      box-shadow: 0 8px 18px rgba(120, 60, 20, 0.05);
+      transition: all 0.15s ease;
+    }
+
+    .scene-card h3 {
+      font-size: 1.25rem;
+      color: #4a2d15;
+      margin-bottom: 1rem;
+      border-left: 5px solid #d6995a;
+      padding-left: 0.9rem;
+    }
+
+    .scene-card p {
+      color: #5d4129;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .scene-card .tag {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #f3e1cb;
+      color: #53381d;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    /* FAQ 摘要 */
+    .faq-box {
+      border-radius: 32px;
+      padding: 1.8rem 2.5rem 2.2rem;
+      background: #fffcf7;
+      box-shadow: 0 10px 24px rgba(110, 50, 20, 0.04);
+    }
+
+    .faq-box h2 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #3a2413;
+      margin-bottom: 1.4rem;
+      letter-spacing: 1px;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #efded0;
+      padding-bottom: 1rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 0;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-item .q {
+      font-weight: 550;
+      color: #3a2413;
+      margin-bottom: 0.35rem;
+    }
+
+    .faq-item .a {
+      color: #5f4530;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .faq-item .a a {
+      color: #a7713e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #dbb18b;
+      font-weight: 500;
+    }
+
+    .faq-item .a a:hover {
+      color: #7c5229;
+      text-decoration-color: #a7713e;
+    }
+
+    /* 一句话入口 */
+    .gentle-ref {
+      margin-top: 2rem;
+      text-align: center;
+      background: #fffcf7;
+      border-radius: 40px;
+      padding: 1.2rem 1.8rem;
+      box-shadow: 0 6px 14px rgba(120, 60, 20, 0.04);
+      font-size: 1rem;
+      color: #4d311b;
+    }
+
+    .gentle-ref a {
+      color: #8a5f34;
+      font-weight: 550;
+      text-decoration: none;
+      border-bottom: 2px solid #dbb18b;
+      transition: border-color 0.2s;
+    }
+
+    .gentle-ref a:hover {
+      border-bottom-color: #7c5229;
+      color: #5e391b;
+    }
+
+    /* 响应式 */
+    @media (max-width: 800px) {
+      .top-nav {
+        flex-direction: column;
+        gap: 0.6rem;
+        padding: 0.9rem 1.5rem;
+        border-radius: 40px;
+      }
+
+      .top-nav .nav-links {
+        gap: 1.3rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .scenes-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .card,
+      .scene-card,
+      .faq-box,
+      .gentle-ref {
+        padding-left: 1.6rem;
+        padding-right: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero .sub {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 1.2rem 0.8rem 2rem;
+      }
+
+      .top-nav .brand {
+        font-size: 1rem;
+      }
+
+      .top-nav .nav-links a {
+        font-size: 0.8rem;
+      }
+
+      .hero {
+        padding: 2rem 1rem 2rem;
+      }
+
+      .faq-box h2 {
+        font-size: 1.3rem;
+      }
+    }
+
+    /* 小细节 */
+    hr.soft {
+      border: none;
+      border-top: 2px dotted #ecdacb;
+      margin: 0.8rem 0 1.8rem;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <!-- 顶部导航 -->
+    <nav class="top-nav">
+      <div class="brand">爱游戏 <span>稳定入口</span></div>
+      <div class="nav-links">
+        <a href="#intro">介绍</a>
+        <a href="#scenes">场景</a>
+        <a href="#faq">说明</a>
+      </div>
+    </nav>
+
+    <!-- Hero 区域（核心介绍） -->
+    <section class="card hero" id="intro">
+      <h1>爱游戏 · 从一处稳定的地方开始</h1>
+      <p class="sub">
+        无论你习惯在哪个角落停留，一个清晰、可靠的入口总能让事情简单一些。
+        这里整理的页面说明和常见信息，都是为了同一个目的——当你需要时，
+        可以自然地去往 <a href="https://official-home-ayxsports.com" style="color:#8a5f34;text-decoration:underline;text-underline-offset:3px;">爱游戏</a>，
+        不必反复确认地址或担心绕路。
+      </p>
+      <a href="https://official-home-ayxsports.com" class="hero-link">爱游戏</a>
+      <p style="margin-top: 1.2rem; font-size: 0.85rem; color: #7a5e44;">轻量导航 · 页面说明 · 日常场景参考</p>
+    </section>
+
+    <!-- 三个场景模块 -->
+    <div class="scenes-grid" id="scenes">
+      <div class="scene-card">
+        <h3>日常浏览</h3>
+        <p>想要随手打开看看最新内容，或者只是习惯性地浏览。一个固定的位置能省去重复搜索的麻烦，浏览器收藏夹也好，笔记里的链接也好，指向同一个地方。</p>
+        <span class="tag">固定入口</span>
+      </div>
+      <div class="scene-card">
+        <h3>信息同步</h3>
+        <p>和朋友聊到相关内容，需要分享一个准确的地址。与其临时翻找，不如直接发送这个稳定入口，对方也能顺利抵达。少一点解释，多一点直接。</p>
+        <span class="tag">分享场景</span>
+      </div>
+      <div class="scene-card">
+        <h3>偶尔回访</h3>
+        <p>隔了一段时间没来，担心地址变动或者记错。这时候一个清晰、没太多装饰的页面说明反而最有用——确认一下，就可以继续了。</p>
+        <span class="tag">确认指向</span>
+      </div>
+    </div>
+
+    <!-- 常见说明 + FAQ 摘要 -->
+    <div class="faq-box" id="faq">
+      <h2>一些简短的说明</h2>
+
+      <div class="faq-item">
+        <div class="q">这个页面是做什么的？</div>
+        <div class="a">主要是整理指向 <a href="https://official-home-ayxsports.com">爱游戏</a> 的基础入口信息，附带三个常见的使用场景，方便你快速理解这个页面的定位。没有复杂的后台，也不收集任何数据。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="q">链接地址会不会突然变化？</div>
+        <div class="a">当前指向的地址是 https://official-home-ayxsports.com ，这个介绍页本身会保持内容稳定。如果未来有调整，这里会同步更新说明，避免误导。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="q">为什么强调“稳定入口”？</div>
+        <div class="a">因为很多时候我们只是需要一个不会出错、不用二次确认的地址。尤其当你习惯把链接存到备忘录、收藏夹或者群聊记录里时，稳定入口能省去不少琐碎的核对时间。</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="q">还有别的需要注意的吗？</div>
+        <div class="a">页面里所有关于 <a href="https://official-home-ayxsports.com">爱游戏</a> 的链接都指向同一个地址，没有隐藏跳转。如果你愿意，也可以把这一页收藏起来，当作一个辅助参考。</div>
+      </div>
+
+      <hr class="soft">
+
+      <p style="font-size:0.9rem; color:#6b503b; text-align:right;">—— 更新于 2025 · 介绍页 v1</p>
+    </div>
+
+    <!-- 自然嵌入链接的句子 -->
+    <div class="gentle-ref">
+      如果你需要直达，这里有一处链接：<a href="https://official-home-ayxsports.com">爱游戏</a>。不需要多余的动作，它就在那里。
+    </div>
+
+  </div>
+</body>
+</html>
